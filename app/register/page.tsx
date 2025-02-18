@@ -1,3 +1,4 @@
+import register from "@/action/user";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
@@ -13,7 +14,7 @@ const Register = async () => {
         Please provide all the necesary information
       </p>
 
-      <form className="my-8" autoComplete="off">
+      <form className="my-8" autoComplete="off" action={register}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <div className="flex flex-col">
             <Label htmlFor="firstname" className="mb-2">
