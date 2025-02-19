@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* SOLO LEVELING SYSTEM UI */
+body {
+  font-family: var(--font-geist-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-geist-mono);
+  color: #c9a227; /* Golden stat UI effect */
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid rgba(255, 215, 0, 0.3); /* Faint golden glow */
+  box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+}
+
+.card-title {
+  color: #facc15; /* Soft golden */
+}
+
+.card-content {
+  color: #fff;
+  font-weight: bold;
+}
