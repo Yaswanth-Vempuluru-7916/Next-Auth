@@ -1,11 +1,21 @@
 import { login } from "@/action/user";
-import { signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
+import { redirect } from "next/navigation";
+import { getSession } from "@/lib/getSession";
 
-const Login = () => {
+const Login = async () => {
+
+  const session = await getSession();
+  console.log(`************ ${JSON.stringify(session?.user)}`);
+// if the user is not in the session if we go /login --> it will redirect to the / home page itself
+  const user = session?.user;
+  if(user) redirect("/")
+
+
   return (
     <div className="relative mt-10 max-w-md w-full mx-auto p-6 md:p-10 shadow-2xl border border-blue-500/30 rounded-md bg-[#030d1f] text-white overflow-hidden">
       {/* Background effect */}

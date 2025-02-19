@@ -6,8 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getSession } from "@/lib/getSession";
+import { redirect } from "next/navigation";
 
-const Dashboard = () => {
+const Dashboard = async () => {
+ const session  = await getSession();
+  const user = session?.user;
+  if (!user) return redirect("/");
   return (
     <div className="flex h-full bg-gradient-to-b from-black via-gray-900 to-gray-950 text-white">
       <div className="flex-1 p-10">

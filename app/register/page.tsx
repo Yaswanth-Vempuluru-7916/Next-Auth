@@ -1,9 +1,15 @@
 import register from "@/action/user";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getSession } from "@/lib/getSession";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const Register = async () => {
+
+  const session  = await getSession();
+  const user = session?.user;
+  if(user) redirect('/');
   return (
     <div className="relative mt-10 max-w-md w-full mx-auto p-6 md:p-10 shadow-2xl border border-blue-500/30 rounded-md bg-[#030d1f] text-white overflow-hidden">
 

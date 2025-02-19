@@ -28,6 +28,27 @@ export const login = async(formData : FormData): Promise<void> =>{
     redirect("/")
 }
 
+export const fetchAllUsers = async()=>{
+  await connectDB()
+  try {
+    const users = await User.find().lean(); // Converts Mongoose documents to plain objects
+    return JSON.parse(JSON.stringify(users)); // Ensure it's fully serializable
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return [];
+  }
+}
+
+// Delete User
+export const deleteUserAction = async (userId) => {
+  try {
+    await User.findByIdAndDelete(userId);
+  } catch (error) {
+    console.error("Error deleting user:", error);
+  }
+};
+
+
 const register = async (formData: FormData) => {
   const firstName = formData.get("firstname") as string;
   const lastName = formData.get("lastname") as string;
@@ -51,6 +72,9 @@ const register = async (formData: FormData) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   await User.create({ firstName, lastName, email, password: hashedPassword });
   console.log(`User created successfully ✅`);
+  redirect('/login')
 };
+
+
 
 export default register;
